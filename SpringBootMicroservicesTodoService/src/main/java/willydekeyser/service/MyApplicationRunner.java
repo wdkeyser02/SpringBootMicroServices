@@ -22,10 +22,10 @@ public class MyApplicationRunner implements ApplicationRunner{
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		
-			List<Todo> todos = todoClient.todos();
+			List<Todo> todos = todoClient.todos().getBody();
 			todoRepository.saveAll(todos);
 			log.info("Saved {} todos in the database.", todos.size());
-			String text = todoClient.create(todos);
+			String text = todoClient.create(todos).getBody();
 			log.info(text);
 			log.info("{} Todos send to Dashboard.", todos.size());
 		
