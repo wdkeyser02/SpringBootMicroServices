@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import willydekeyser.model.Todo;
 
 @Repository
-public interface TodoRepository extends CrudRepository<Todo, Integer>{
+public interface TodoRepository  extends CrudRepository<Todo, Integer>{
 
 }

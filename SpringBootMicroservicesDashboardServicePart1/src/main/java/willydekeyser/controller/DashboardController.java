@@ -2,6 +2,7 @@ package willydekeyser.controller;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,14 +18,13 @@ import willydekeyser.repository.TodoRepository;
 @Slf4j
 @RequiredArgsConstructor
 public class DashboardController {
-
-	private final TodoRepository todoRepository;
 	
+	private final TodoRepository todoRepository;
+		
 	@PostMapping("/todos")
-	public String loadTodos(@RequestBody List<Todo> todos) {
+	public ResponseEntity<String> loadTodos(@RequestBody List<Todo> todos) {
 		log.info("Saved {} todos in the Dashboard database.", todos.size());
-		log.info("todos {}", todos);
 		todoRepository.saveAll(todos);
-		return "Saved " + todos.size() + " todos in the Dashboard database.";
+		return ResponseEntity.ok().body("Saved " + todos.size() + " todos in the Dashboard database.");
 	}
 }
